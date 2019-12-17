@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-example
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable-alpine
+    ports:
+    - containerPort: 80
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: logger
+spec:
+  selector:
+    app: logger
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 80
+    nodePort: 32065
+  type: NodePort
