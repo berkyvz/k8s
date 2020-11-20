@@ -33,3 +33,6 @@ NODE2:
 kubeadm join 10.9.1.211:6443 --token e23rkr.wfgt5gupzxxsg6ky     
 --discovery-token-ca-cert-hash sha256:f85c238478df24d0db2d3dc212ed40b75a682534639d7e7671c2cfcff385c2ec 
 --experimental-control-plane --certificate-key 1da66bdf71f9493daf38ac2e8980c51a018bc52f457db7336649c862ef7284c2
+
+
+https://octetz.com/docs/2019/2019-03-26-ha-control-plane-kubeadm/
