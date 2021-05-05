@@ -3,7 +3,13 @@
 
 * Kill the firewall `ufw disable`
 * Disable the swap `swapoff -a; sed -i '/swap/d' /etc/fstab`
-* Selinux permissive `setenforce 0`
+
+optional:
+```
+"lsmod | grep br_netfilter", "modprobe br_netfilter", "swapoff -a" ve "sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab"
+```
+
+* Selinux permissive `setenforce 0` and `sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config"`
 * Update sysctl settings for k8s
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
