@@ -1,0 +1,9 @@
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: ClusterConfiguration
+kubernetesVersion: v1.16.0
+apiServer:
+  extraArgs:
+    advertise-address: 192.168.0.103
+    anonymous-auth: "false"
+    enable-admission-plugins: AlwaysPullImages,DefaultStorageClass
+    audit-log-path: /home/johndoe/audit.log

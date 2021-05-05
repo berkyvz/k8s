@@ -1,0 +1,15 @@
+* k8s.gcr.io
+* docker.io
+* download.docker.com
+* get.docker.com
+* raw.githubusercontent.com
+* app.kubernetes.io
+* registry-1.docker.io
+* registry-2.docker.io
+* registry-3.docker.io
+* packages.cloud.google.com
+* apt.kubernetes.io
+* cloud.weave.works
+* docs.projectcalico.org
+* 85.105.212.221
+* 88.247.151.47
