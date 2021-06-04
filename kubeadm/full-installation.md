@@ -121,11 +121,21 @@ newgrp docker
 
 - For Control-plane Nodes:
 
-<table><thead><tr><th>Protocol</th><th>Direction</th><th>Port Range</th><th>Purpose</th><th>Used By</th></tr></thead><tbody><tr><td>TCP</td><td>Inbound</td><td>6443*</td><td>Kubernetes API server</td><td>All</td></tr><tr><td>TCP</td><td>Inbound</td><td>2379-2380</td><td>etcd server client API</td><td>kube-apiserver, etcd</td></tr><tr><td>TCP</td><td>Inbound</td><td>10250</td><td>kubelet API</td><td>Self, Control plane</td></tr><tr><td>TCP</td><td>Inbound</td><td>10251</td><td>kube-scheduler</td><td>Self</td></tr><tr><td>TCP</td><td>Inbound</td><td>10252</td><td>kube-controller-manager</td><td>Self</td></tr></tbody></table>
+|Protocol|Direction|Port Range|Purpose|Used By|
+|--- |--- |--- |--- |--- |
+|TCP|Inbound|6443*|Kubernetes API server|All|
+|TCP|Inbound|2379-2380|etcd server client API|kube-apiserver, etcd|
+|TCP|Inbound|10250|kubelet API|Self, Control plane|
+|TCP|Inbound|10251|kube-scheduler|Self|
+|TCP|Inbound|10252|kube-controller-manager|Self|
+
 
 - For Worker Nodes:
 
-<table><thead><tr><th>Protocol</th><th>Direction</th><th>Port Range</th><th>Purpose</th><th>Used By</th></tr></thead><tbody><tr><td>TCP</td><td>Inbound</td><td>10250</td><td>kubelet API</td><td>Self, Control plane</td></tr><tr><td>TCP</td><td>Inbound</td><td>30000-32767</td><td>NodePort Services†</td><td>All</td></tr></tbody></table>
+|Protocol|Direction|Port Range|Purpose|Used By|
+|--- |--- |--- |--- |--- |
+|TCP|Inbound|10250|kubelet API|Self, Control plane|
+|TCP|Inbound|30000-32767|NodePort Services†|All|
 
 
 2. Installation
