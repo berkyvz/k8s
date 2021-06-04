@@ -123,7 +123,7 @@ newgrp docker
 
 |Protocol|Direction|Port Range|Purpose|Used By|
 |--- |--- |--- |--- |--- |
-|TCP|Inbound|6443*|Kubernetes API server|All|
+|TCP|Inbound|6443 |Kubernetes API server|All|
 |TCP|Inbound|2379-2380|etcd server client API|kube-apiserver, etcd|
 |TCP|Inbound|10250|kubelet API|Self, Control plane|
 |TCP|Inbound|10251|kube-scheduler|Self|
@@ -305,35 +305,16 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ---
 
-## Common Kubeadm Init Errors Solutions
 
-- `CGROUP_PID Error:` OracleLinux Kernel 4&4+ does not have `CGROUP_PID` in kernel. You should downgrade it to 3.**.
-```
-awk -F\' '$1=="menuentry " {print $2}' /etc/grub2.cfg
-# find the correct kernel version and set it. After setting reboot vm.
 
-For example:
+## After Installation ( WeaveNet, Metric Server, Nginx Ingress)
 
-Oracle Linux Server 7.1, with Linux 3.10.0-229.el7.x86_64 ( 0 )
-Oracle Linux Server 7.1, with Unbreakable Enterprise Kernel 3.8.13-55.1.6.el7uek.x86_64 ( 1 )
-Oracle Linux Server 7.1, with Linux 0-rescue-26ad0b77c2de4840ba8402282bdd9d17 ( 2 )
-
-grub2-set-default <choose corrent one from the outputs above from starting index 0>
-
-Like; grub2-set-default 2
-
-grub2-mkconfig -o /etc/grub2.cfg
-
-Now, check if `CGROUP_PID` is exist;
-
-cat /boot/config-`uname -r` | grep CGROUP
+You have to install CNI for networking (For more information https://www.weave.works/docs/net/latest/kubernetes/kube-addon/)
 
 ```
+$ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
-* Check for more: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/
-
-
-## After Installation ( Metric Server, Nginx Ingress)
+```
 
 1. Download Metric server yaml file (For newer versions check https://github.com/kubernetes-sigs/metrics-server)
 ```
@@ -398,6 +379,35 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 ```
 
 
+
+---
+
+## Common Kubeadm Init Errors Solutions
+
+- `CGROUP_PID Error:` OracleLinux Kernel 4&4+ does not have `CGROUP_PID` in kernel. You should downgrade it to 3.**.
+```
+awk -F\' '$1=="menuentry " {print $2}' /etc/grub2.cfg
+# find the correct kernel version and set it. After setting reboot vm.
+
+For example:
+
+Oracle Linux Server 7.1, with Linux 3.10.0-229.el7.x86_64 ( 0 )
+Oracle Linux Server 7.1, with Unbreakable Enterprise Kernel 3.8.13-55.1.6.el7uek.x86_64 ( 1 )
+Oracle Linux Server 7.1, with Linux 0-rescue-26ad0b77c2de4840ba8402282bdd9d17 ( 2 )
+
+grub2-set-default <choose corrent one from the outputs above from starting index 0>
+
+Like; grub2-set-default 2
+
+grub2-mkconfig -o /etc/grub2.cfg
+
+Now, check if `CGROUP_PID` is exist;
+
+cat /boot/config-`uname -r` | grep CGROUP
+
+```
+
+* Check for more: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/
 
 ---
 ## Helper commands
