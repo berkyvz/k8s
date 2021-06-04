@@ -320,6 +320,8 @@ cat /boot/config-`uname -r` | grep CGROUP
 
 ```
 
+* Check for more: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/
+
 
 ## After Installation ( Metric Server, Nginx Ingress)
 
