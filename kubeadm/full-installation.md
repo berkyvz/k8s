@@ -293,6 +293,16 @@ sudo systemctl restart haproxy
 kubeadm init --control-plane-endpoint="<load_balancer_ip>:6443" --upload-certs --apiserver-advertise-address=<current-node-ip> --pod-network-cidr=192.168.0.0/16
 ```
 
+Adding another master
+```
+
+kubeadm init phase upload-certs --upload-certs
+
+kubeadm token create  
+--print-join-command 
+--certificate-key *******
+```
+
 ```
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
